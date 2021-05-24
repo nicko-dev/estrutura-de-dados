@@ -3,7 +3,7 @@
 // Author      : Nickolas Barbosa, mat: 2012297BCC
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Trabalho 2 EDA 2020.2
+// Description : Programa de gerenciamento de comandas de um restaurante
 //============================================================================
 
 #include <iostream>
@@ -15,7 +15,7 @@ using namespace std;
 struct item {
 	int codP; //codigo do item
 	float valor; //valor do item
-	item* proxP; //endereÁo do proximo item
+	item* proxP; //endere√ßo do proximo item
 };
 
 struct comanda {
@@ -41,7 +41,7 @@ void comecaDia (comanda* cliente){
 
 float* criaCardapio(int maxItens){
 
-	//Cria um card·pio genÈrico apenas para testar o programa. O card·pio poderia ser lido de uma tabela no formato CSV
+	//Cria um card√°pio gen√©rico apenas para testar o programa. O card√°pio poderia ser lido de uma tabela no formato CSV
 
 	float* item = new float[maxItens];
 
@@ -60,8 +60,8 @@ int checaComanda (comanda* cliente, int indexCliente){
 	int maxClientes = max;
 
 	if (indexCliente<0 || indexCliente>=maxClientes || cliente[indexCliente].vago){
-		cout<<"\nComanda inv·lida!";
-		return 0; //Comanda n„o est· em uso
+		cout<<"\nComanda inv√°lida!";
+		return 0; //Comanda n√£o est√° em uso
 	}
 	return 1; //Comanda em uso
 
@@ -81,7 +81,7 @@ int printaComanda (comanda* cliente, int indexCliente){
 
 	item* atual = cliente[indexCliente].headItem;
 
-	cout<<	"\n*óóóóóóóóóóóóóóóóóóóó*"
+	cout<<	"\n*‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî*"
 			"\n  Comanda "<<indexCliente+1<<":\n"
 			"\n  Item        Valor\n";
 
@@ -95,7 +95,7 @@ int printaComanda (comanda* cliente, int indexCliente){
 
 	cout.copyfmt(state);
 
-	cout<<"\n*óóóóóóóóóóóóóóóóóóóó*";
+	cout<<"\n*‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî*";
 
 	return 1;
 }
@@ -104,7 +104,7 @@ int printaComanda (comanda* cliente, int indexCliente){
 
 int addCliente (comanda* cliente){
 
-	//Verifica a primeira comanda vazia (ordem crescente) e retorna o Ìndice dela ou 0 se o restaurante estiver cheio.
+	//Verifica a primeira comanda vazia (ordem crescente) e retorna o √≠ndice dela ou 0 se o restaurante estiver cheio.
 
 	int maxClientes = max;
 
@@ -151,7 +151,7 @@ int removeItem(comanda* cliente, int codProduto){
 	item* anterior = (*cliente).headItem;
 	item* atual = (*anterior).proxP;
 
-	if((*anterior).codP==codProduto){ //verifica se o item buscado È o primeiro da fila e o remove se sim
+	if((*anterior).codP==codProduto){ //verifica se o item buscado √© o primeiro da fila e o remove se sim
 		(*cliente).headItem = (*anterior).proxP;
 		free(anterior);
 		return 1;
@@ -166,14 +166,14 @@ int removeItem(comanda* cliente, int codProduto){
 		anterior = atual;
 		atual = (*atual).proxP;
 	}while(atual);
-	return 0; //retorna 0 se o item n„o for encontrado
+	return 0; //retorna 0 se o item n√£o for encontrado
 }
 
 //Complexidade: O(n)
 
 float fechaComanda (comanda* cliente, int indexCliente){
 
-	//Calcula e printa o total da conta enquanto libera a memÛria usada pra armazen·-la
+	//Calcula e printa o total da conta enquanto libera a mem√≥ria usada pra armazen√°-la
 
 	int continuar;
 
@@ -194,7 +194,7 @@ float fechaComanda (comanda* cliente, int indexCliente){
 	item* proximo = NULL;
 	float total = 0;
 
-	cout<<	"\n*óóóóóóóóóóóóóóóóóóóó*"
+	cout<<	"\n*‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî*"
 			"\n  Comanda "<<indexCliente+1<<":\n"
 			"\n  Item        Valor\n";
 
@@ -210,7 +210,7 @@ float fechaComanda (comanda* cliente, int indexCliente){
 	}
 
 	cout<<"\n     Total: R$ "<<total;
-	cout<<"\n*óóóóóóóóóóóóóóóóóóóó*";
+	cout<<"\n*‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî‚Äî*";
 
 	cout.copyfmt(state);
 
@@ -223,11 +223,11 @@ float fechaComanda (comanda* cliente, int indexCliente){
 
 int fechaDia (comanda *cliente, float totalDia){
 
-	//Fecha o dia e imprime o valor geral. SÛ finaliza se n„o houverem contas pendentes
+	//Fecha o dia e imprime o valor geral. S√≥ finaliza se n√£o houverem contas pendentes
 
 	int resposta, maxClientes = max;
 
-	for (int i=0; i<maxClientes;i++){ //verifica se alguma comanda ainda est· aberta e pergunta se o usu·rio deseja fech·-la
+	for (int i=0; i<maxClientes;i++){ //verifica se alguma comanda ainda est√° aberta e pergunta se o usu√°rio deseja fech√°-la
 		if(cliente[i].headItem){
 			cout<<"\nComanda "<<i+1<<" em uso!"
 			<<"\nDigite 1 para fechar a comanda ou 0 para sair: ";
@@ -257,7 +257,7 @@ int main() {
 	do {
 		cout<<  "\n ______________________________"
 				"\n|                              |"
-				"\n| Ol·! O que deseja fazer?     |"
+				"\n| Ol√°! O que deseja fazer?     |"
 				"\n| 1: Abrir conta               |"
 				"\n| 2: Adicionar item            |"
 				"\n| 3: Cancelar item             |"
@@ -275,9 +275,9 @@ int main() {
 			{
 				int indexCliente = addCliente(cliente);
 				if(indexCliente)
-					cout<<"\nComanda n˙mero "<<indexCliente<<" liberada\n";
+					cout<<"\nComanda n√∫mero "<<indexCliente<<" liberada\n";
 				else
-					cout<< "\nRestaurante lotado no momento, aguarde a liberaÁ„o de uma comanda.\n";
+					cout<< "\nRestaurante lotado no momento, aguarde a libera√ß√£o de uma comanda.\n";
 				break;
 			}
 
@@ -286,7 +286,7 @@ int main() {
 				int codProduto, indexCliente, continuar = 0;
 
 				do{
-					cout<<"\nDigite o n˙mero da comanda ou 0 para voltar: ";
+					cout<<"\nDigite o n√∫mero da comanda ou 0 para voltar: ";
 					cin>> indexCliente;
 					if(!indexCliente)
 						break;
@@ -294,10 +294,10 @@ int main() {
 				}while(!continuar);
 
 				while(continuar){
-					cout<<"\nDigite o cÛdigo do produto entre 1 e 40: ";
+					cout<<"\nDigite o c√≥digo do produto entre 1 e 40: ";
 					cin>> codProduto;
 						if(codProduto<1 || codProduto>maxItens){
-							cout<<"CÛdigo inv·lido!\n";
+							cout<<"C√≥digo inv√°lido!\n";
 							continue;
 						}
 					addItem(&cliente[indexCliente-1], codProduto, cardapio);
@@ -313,7 +313,7 @@ int main() {
 				int codProduto, indexCliente, continuar = 0;
 
 				do{
-					cout<<"\nDigite o n˙mero da comanda ou 0 para voltar: ";
+					cout<<"\nDigite o n√∫mero da comanda ou 0 para voltar: ";
 					cin>> indexCliente;
 					if(!indexCliente)
 						break;
@@ -323,10 +323,10 @@ int main() {
 				while(continuar){
 					if(!printaComanda (cliente, indexCliente-1))
 						break;
-					cout<<"\nDigite o cÛdigo do item a ser cancelado: ";
+					cout<<"\nDigite o c√≥digo do item a ser cancelado: ";
 					cin>> codProduto;
 					if(!removeItem(&cliente[indexCliente-1], codProduto)){
-						cout<<"\nCÛdigo inv·lido, nenhum item cancelado.";
+						cout<<"\nC√≥digo inv√°lido, nenhum item cancelado.";
 					}
 					cout<< "\nDigite 1 para realizar outro cancelamento ou 0 para finalizar: ";
 					cin>> continuar;
@@ -340,7 +340,7 @@ int main() {
 				int continuar, indexCliente;
 
 				do{
-					cout<<"\nDigite o n˙mero da comanda ou 0 para voltar: ";
+					cout<<"\nDigite o n√∫mero da comanda ou 0 para voltar: ";
 					cin>> indexCliente;
 					if(!indexCliente)
 						break;
@@ -358,7 +358,7 @@ int main() {
 				int indexCliente, continuar;
 
 				do{
-					cout<<"\nDigite o n˙mero da comanda ou 0 para voltar: ";
+					cout<<"\nDigite o n√∫mero da comanda ou 0 para voltar: ";
 					cin>> indexCliente;
 					if(!indexCliente)
 						break;
@@ -378,7 +378,7 @@ int main() {
 			}
 			default:
 			{
-				cout<<"\nOP«√O INV¡LIDA!";
+				cout<<"\nOP√á√ÉO INV√ÅLIDA!";
 				break;
 			}
 		}
